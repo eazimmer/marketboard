@@ -1,10 +1,23 @@
-.search-container {
+#top-nav {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   margin-top: 2rem;
+}
+
+#search-container {
+  margin-right: auto;
+  margin-left: calc(50% - 274px);
 }
 
 #search-input {
   width: 30rem;
+}
+
+.dropdown-button {
+  width: 10rem;
+}
+
+.flex {
+  display: flex;
 }
