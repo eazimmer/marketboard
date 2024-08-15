@@ -1,24 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import TextField from "@mui/material/TextField";
+import "./App.css";
+import { IconButton } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
 
 function App() {
+  const [searchText, setSearchText] = useState("");
+
+  // Allow for search bar submission via enter press
+  function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
+    if (event.key === "Enter") {
+      searchItem();
+    }
+  }
+
+  // Execute item search
+  function searchItem() {
+    console.log("Searching: ", searchText);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="search-container">
+      <TextField
+        id="search-input"
+        onChange={(e) => {
+          setSearchText(e.target.value);
+        }}
+        onKeyDown={handleKeyDown}
+        placeholder="Search for an item"
+        value={searchText}
+        variant="outlined"
+      />
+      <IconButton color="secondary" onClick={searchItem}>
+        <SearchIcon />
+      </IconButton>
     </div>
   );
 }
