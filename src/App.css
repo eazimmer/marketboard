@@ -1,10 +1,27 @@
-.search-container {
+#top-nav {
   display: flex;
   align-items: center;
-  justify-content: center;
-  margin-top: 2rem;
+  justify-content: flex-end;
 }
 
-#search-input {
-  width: 30rem;
+#search-container {
+  display: flex;
+  margin-right: auto;
+  margin-left: calc(50% - 274px);
+
+  #search-input {
+    width: 30rem;
+  }
+
+  #search-submit-button {
+    width: 60px;
+  }
+}
+
+.dropdown-button {
+  width: 150px;
+}
+
+.flex {
+  display: flex;
 }
