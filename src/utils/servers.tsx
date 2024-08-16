@@ -45,8 +45,13 @@ export enum WORLDS_ENUM {
 }
 export const WORLDS = Object.values(WORLDS_ENUM);
 
+interface Server {
+  dataCenter: DATA_CENTERS_ENUM;
+  worlds: WORLDS_ENUM[];
+}
+
 // TODO: Expand beyond NA worlds
-export const SERVERS = [
+export const SERVERS: Server[] = [
   {
     dataCenter: DATA_CENTERS_ENUM.AETHER,
     worlds: [

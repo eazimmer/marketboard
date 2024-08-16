@@ -2,20 +2,24 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  margin-top: 2rem;
 }
 
 #search-container {
+  display: flex;
   margin-right: auto;
   margin-left: calc(50% - 274px);
-}
 
-#search-input {
-  width: 30rem;
+  #search-input {
+    width: 30rem;
+  }
+
+  #search-submit-button {
+    width: 60px;
+  }
 }
 
 .dropdown-button {
-  width: 10rem;
+  width: 150px;
 }
 
 .flex {

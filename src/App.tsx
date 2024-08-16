@@ -33,7 +33,7 @@ function App() {
   return (
     <>
       <div id="top-nav">
-        <div id="search-container" className="nav-item">
+        <div id="search-container">
           <TextField
             id="search-input"
             onChange={(e) => {
@@ -44,13 +44,17 @@ function App() {
             value={searchText}
             variant="outlined"
           />
-          <IconButton color="secondary" onClick={searchItem}>
+          <IconButton
+            id="search-submit-button"
+            color="secondary"
+            onClick={searchItem}
+          >
             <SearchIcon />
           </IconButton>
         </div>
         <div className="flex">
           <div className="dropdown-button flex">
-            <FormControl sx={{ m: 1, minWidth: 160 }}>
+            <FormControl sx={{ minWidth: 150 }}>
               <InputLabel id="data-center-select-helper-label">
                 Data Center
               </InputLabel>
@@ -69,7 +73,7 @@ function App() {
             </FormControl>
           </div>
           <div className="dropdown-button flex">
-            <FormControl disabled={!dataCenter} sx={{ m: 1, minWidth: 160 }}>
+            <FormControl disabled={!dataCenter} sx={{ minWidth: 150 }}>
               <InputLabel id="home-world-select-helper-label">
                 Home World
               </InputLabel>
