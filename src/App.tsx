@@ -1,5 +1,7 @@
+// React
 import React, { useState } from "react";
 
+// Material UI
 import {
   FormControl,
   IconButton,
@@ -11,12 +13,21 @@ import {
 import SearchIcon from "@mui/icons-material/Search";
 import TextField from "@mui/material/TextField";
 
+// Local
+import { DATA_CENTERS, SERVERS, WORLDS_ENUM } from "./utils/servers";
 import "./App.css";
 
 function App() {
-  const [dataCenter, setDataCenter] = React.useState("");
-  const [homeWorld, setHomeWorld] = React.useState("");
+  const [dataCenter, setDataCenter] = useState(
+    localStorage.getItem("dataCenter") ?? ""
+  );
+  const [homeWorld, setHomeWorld] = useState(
+    localStorage.getItem("homeWorld") ?? ""
+  );
   const [searchText, setSearchText] = useState("");
+  const [availableWorlds, setAvailableWorlds] = useState<WORLDS_ENUM[]>(
+    getWorldsForDataCenter()
+  );
 
   // Allow for search bar submission via enter press
   function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
@@ -28,6 +39,47 @@ function App() {
   // Execute item search
   function searchItem() {
     console.log("Searching: ", searchText);
+  }
+
+  // Populate available worlds based on selected datacenter
+  function selectDataCenter(dataCenter: string) {
+    // Reset homeworld whenever datacenter selection changes
+    setHomeWorld("");
+    localStorage.removeItem("homeWorld");
+
+    // Store dataCenter value
+    setDataCenter(dataCenter);
+    localStorage.setItem("dataCenter", dataCenter);
+
+    // Pull associated worlds from relevant datacenter
+    const server = SERVERS.find((server) => server.dataCenter === dataCenter);
+    if (server) {
+      setAvailableWorlds(server.worlds);
+    } else {
+      console.error(
+        "Failed to find worlds associated with datacenter: ",
+        dataCenter
+      );
+    }
+  }
+
+  function selectHomeWorld(world: string) {
+    setHomeWorld(world);
+    localStorage.setItem("homeWorld", world);
+  }
+
+  // Pull associated worlds from relevant datacenter
+  function getWorldsForDataCenter(): WORLDS_ENUM[] {
+    if (dataCenter) {
+      const server = SERVERS.find((server) => server.dataCenter === dataCenter);
+      if (server) {
+        return server.worlds;
+      } else {
+        return [];
+      }
+    } else {
+      return [];
+    }
   }
 
   return (
@@ -63,12 +115,14 @@ function App() {
                 value={dataCenter}
                 label="Data Center"
                 onChange={(event: SelectChangeEvent) =>
-                  setDataCenter(event.target.value)
+                  selectDataCenter(event.target.value)
                 }
               >
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
+                {DATA_CENTERS.map((dataCenter) => (
+                  <MenuItem key={dataCenter} value={dataCenter}>
+                    {dataCenter}
+                  </MenuItem>
+                ))}
               </Select>
             </FormControl>
           </div>
@@ -82,12 +136,14 @@ function App() {
                 value={homeWorld}
                 label="Home World"
                 onChange={(event: SelectChangeEvent) =>
-                  setHomeWorld(event.target.value)
+                  selectHomeWorld(event.target.value)
                 }
               >
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
+                {availableWorlds.map((world) => (
+                  <MenuItem key={world} value={world}>
+                    {world}
+                  </MenuItem>
+                ))}
               </Select>
             </FormControl>
           </div>
