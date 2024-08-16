@@ -13,8 +13,13 @@ import {
 import SearchIcon from "@mui/icons-material/Search";
 import TextField from "@mui/material/TextField";
 
-// Local
+// Utils
 import { DATA_CENTERS, SERVERS, WORLDS_ENUM } from "./utils/servers";
+
+// Components
+import LargeCard from "./components/LargeCard";
+
+// Styles
 import "./App.css";
 
 function App() {
@@ -41,7 +46,6 @@ function App() {
     console.log("Searching: ", searchText);
   }
 
-  // Populate available worlds based on selected datacenter
   function selectDataCenter(dataCenter: string) {
     // Reset homeworld whenever datacenter selection changes
     setHomeWorld("");
@@ -95,13 +99,16 @@ function App() {
             placeholder="Search for an item"
             value={searchText}
             variant="outlined"
+            sx={{
+              "& fieldset": { border: "none" },
+            }}
           />
           <IconButton
             id="search-submit-button"
             color="secondary"
             onClick={searchItem}
           >
-            <SearchIcon />
+            <SearchIcon id="search-submit-icon" />
           </IconButton>
         </div>
         <div className="flex">
@@ -148,6 +155,10 @@ function App() {
             </FormControl>
           </div>
         </div>
+      </div>
+      <div className="flex justify-between">
+        <LargeCard></LargeCard>
+        <LargeCard></LargeCard>
       </div>
     </>
   );

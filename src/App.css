@@ -2,23 +2,44 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  margin-bottom: 80px;
 }
 
 #search-container {
   display: flex;
   margin-right: auto;
-  margin-left: calc(50% - 274px);
+  margin-left: calc(50% - 324px);
 
   #search-input {
-    width: 30rem;
+    background-color: rgba(206, 206, 206, 1);
+    border-radius: 15px;
+    border: 1px solid gray;
+    color: rgba(39, 38, 53, 1);
+    width: 600px;
+  }
+
+  #search-input:hover {
+    border: 1px solid rgba(39, 38, 53, 1);
   }
 
   #search-submit-button {
+    background-color: rgba(206, 206, 206, 1);
+    border: 1px solid gray;
+    margin-left: 10px;
     width: 60px;
+
+    #search-submit-icon {
+      color: rgba(39, 38, 53, 1);
+    }
+  }
+
+  #search-submit-button:hover {
+    border: 1px solid rgba(39, 38, 53, 1);
   }
 }
 
 .dropdown-button {
+  background-color: rgba(206, 206, 206, 1);
   width: 150px;
 }
 
