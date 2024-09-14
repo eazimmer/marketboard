@@ -157,8 +157,26 @@ function App() {
         </div>
       </div>
       <div className="flex justify-between">
-        <LargeCard></LargeCard>
-        <LargeCard></LargeCard>
+        <div className="card-container">
+          <div className="card-label">Home World</div>
+          <LargeCard
+            labels={["Price", "Quantity"]}
+            rows={[
+              { price: 989, quantity: 99 },
+              { price: 989, quantity: 99 },
+            ]}
+          ></LargeCard>
+        </div>
+        <div className="card-container">
+          <div className="card-label">Other Worlds</div>
+          <LargeCard
+            labels={["Price", "Quantity", "World"]}
+            rows={[
+              { price: 989, quantity: 99, world: "Adamantoise" },
+              { price: 989, quantity: 99, world: "Adamantoise" },
+            ]}
+          ></LargeCard>
+        </div>
       </div>
     </>
   );

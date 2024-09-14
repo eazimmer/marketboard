@@ -38,6 +38,18 @@
   }
 }
 
+.card-label {
+  background-color: rgba(68, 68, 68, 1);
+  border-radius: 15px;
+  color: rgba(232, 233, 243, 1);
+  font-size: 14px;
+  text-align: center;
+  line-height: 20px;
+  height: 20px;
+  margin-bottom: 10px;
+  width: 150px;
+}
+
 .dropdown-button {
   background-color: rgba(206, 206, 206, 1);
   width: 150px;
