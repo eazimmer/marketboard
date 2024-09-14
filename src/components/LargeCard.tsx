@@ -23,7 +23,9 @@ function LargeCard({ labels, rows }: { labels: string[]; rows: SaleRow[] }) {
     <div id={"large-card-container"}>
       <div id="large-card-label-container" className="flex">
         {labels.map((label) => (
-          <div className="large-card-label">{label}</div>
+          <div className="large-card-label" key={label}>
+            {label}
+          </div>
         ))}
       </div>
       <TableContainer id="large-card-data-table" component={Paper}>
