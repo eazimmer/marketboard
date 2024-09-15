@@ -89,28 +89,6 @@ function App() {
   return (
     <>
       <div id="top-nav">
-        <div id="search-container">
-          <TextField
-            id="search-input"
-            onChange={(e) => {
-              setSearchText(e.target.value);
-            }}
-            onKeyDown={handleKeyDown}
-            placeholder="Search for an item"
-            value={searchText}
-            variant="outlined"
-            sx={{
-              "& fieldset": { border: "none" },
-            }}
-          />
-          <IconButton
-            id="search-submit-button"
-            color="secondary"
-            onClick={searchItem}
-          >
-            <SearchIcon id="search-submit-icon" />
-          </IconButton>
-        </div>
         <div className="flex">
           <div className="dropdown-button flex">
             <FormControl sx={{ minWidth: 150 }}>
@@ -156,7 +134,29 @@ function App() {
           </div>
         </div>
       </div>
-      <div className="flex justify-between">
+      <div id="search-container">
+        <TextField
+          id="search-input"
+          onChange={(e) => {
+            setSearchText(e.target.value);
+          }}
+          onKeyDown={handleKeyDown}
+          placeholder="Search for an item"
+          value={searchText}
+          variant="outlined"
+          sx={{
+            "& fieldset": { border: "none" },
+          }}
+        />
+        <IconButton
+          id="search-submit-button"
+          color="secondary"
+          onClick={searchItem}
+        >
+          <SearchIcon id="search-submit-icon" />
+        </IconButton>
+      </div>
+      <div id="content-container" className="flex justify-between">
         <div className="card-container">
           <div className="card-label">Home World</div>
           <LargeCard
