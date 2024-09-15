@@ -50,7 +50,7 @@ function SingleItemView() {
           <SearchIcon id="search-submit-icon" />
         </IconButton>
       </div>
-      <div id="cards-container">
+      <div className="flex justify-between">
         <div>
           <div className="card-label">Home World</div>
           <LargeCard
