@@ -1,24 +1,22 @@
 // React
-import React, { useState } from "react";
+import { useState } from "react";
+
+// Components
+import SingleItemView from "./components/SingleItemView";
+import MultiItemView from "./components/MultiItemView";
 
 // Material UI
 import {
   FormControl,
-  IconButton,
   InputLabel,
   MenuItem,
   Select,
   SelectChangeEvent,
   Switch,
 } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
-import TextField from "@mui/material/TextField";
 
 // Utils
 import { DATA_CENTERS, SERVERS, WORLDS_ENUM } from "./utils/servers";
-
-// Components
-import LargeCard from "./components/LargeCard";
 
 // Styles
 import "./App.css";
@@ -30,23 +28,10 @@ function App() {
   const [homeWorld, setHomeWorld] = useState(
     localStorage.getItem("homeWorld") ?? ""
   );
-  const [searchText, setSearchText] = useState("");
   const [availableWorlds, setAvailableWorlds] = useState<WORLDS_ENUM[]>(
     getWorldsForDataCenter()
   );
   const [multiView, setMultiView] = useState(false);
-
-  // Allow for search bar submission via enter press
-  function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
-    if (event.key === "Enter") {
-      searchItem();
-    }
-  }
-
-  // Execute item search
-  function searchItem() {
-    console.log("Searching: ", searchText);
-  }
 
   function selectDataCenter(dataCenter: string) {
     // Reset homeworld whenever datacenter selection changes
@@ -142,49 +127,12 @@ function App() {
           </FormControl>
         </div>
       </div>
-      <div id="search-container">
-        <TextField
-          id="search-input"
-          onChange={(e) => {
-            setSearchText(e.target.value);
-          }}
-          onKeyDown={handleKeyDown}
-          placeholder="Search for an item"
-          value={searchText}
-          variant="outlined"
-          sx={{
-            "& fieldset": { border: "none" },
-          }}
-        />
-        <IconButton
-          id="search-submit-button"
-          color="secondary"
-          onClick={searchItem}
-        >
-          <SearchIcon id="search-submit-icon" />
-        </IconButton>
-      </div>
       <div id="content-container" className="flex justify-between">
-        <div className="card-container">
-          <div className="card-label">Home World</div>
-          <LargeCard
-            labels={["Price", "Quantity"]}
-            rows={[
-              { price: 989, quantity: 99 },
-              { price: 989, quantity: 99 },
-            ]}
-          ></LargeCard>
-        </div>
-        <div className="card-container">
-          <div className="card-label">Other Worlds</div>
-          <LargeCard
-            labels={["Price", "Quantity", "World"]}
-            rows={[
-              { price: 989, quantity: 99, world: "Adamantoise" },
-              { price: 989, quantity: 99, world: "Adamantoise" },
-            ]}
-          ></LargeCard>
-        </div>
+        {multiView ? (
+          <MultiItemView></MultiItemView>
+        ) : (
+          <SingleItemView></SingleItemView>
+        )}
       </div>
     </>
   );

@@ -4,59 +4,14 @@
   justify-content: flex-end;
 }
 
-#search-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  #search-input {
-    background-color: rgba(206, 206, 206, 1);
-    border-radius: 15px;
-    border: 1px solid gray;
-    color: rgba(39, 38, 53, 1);
-    width: 600px;
-  }
-
-  #search-input:hover {
-    border: 1px solid rgba(39, 38, 53, 1);
-  }
-
-  #search-submit-button {
-    background-color: rgba(206, 206, 206, 1);
-    border: 1px solid gray;
-    margin-left: 10px;
-    width: 45px;
-
-    #search-submit-icon {
-      color: rgba(39, 38, 53, 1);
-    }
-  }
-
-  #search-submit-button:hover {
-    border: 1px solid rgba(39, 38, 53, 1);
-  }
+#content-container {
+  display: block;
 }
 
 .centered {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-#content-container {
-  margin-top: 25px;
-}
-
-.card-label {
-  background-color: rgba(68, 68, 68, 1);
-  border-radius: 15px;
-  color: rgba(232, 233, 243, 1);
-  font-size: 14px;
-  text-align: center;
-  line-height: 20px;
-  height: 20px;
-  margin-bottom: 10px;
-  width: 150px;
 }
 
 .dropdown-button {
