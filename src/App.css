@@ -37,6 +37,12 @@
   }
 }
 
+.centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 #content-container {
   margin-top: 25px;
 }
@@ -60,4 +66,8 @@
 
 .flex {
   display: flex;
+}
+
+#view-toggle {
+  margin-right: auto;
 }

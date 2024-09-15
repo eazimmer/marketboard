@@ -9,6 +9,7 @@ import {
   MenuItem,
   Select,
   SelectChangeEvent,
+  Switch,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import TextField from "@mui/material/TextField";
@@ -33,6 +34,7 @@ function App() {
   const [availableWorlds, setAvailableWorlds] = useState<WORLDS_ENUM[]>(
     getWorldsForDataCenter()
   );
+  const [multiView, setMultiView] = useState(false);
 
   // Allow for search bar submission via enter press
   function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
@@ -89,49 +91,55 @@ function App() {
   return (
     <>
       <div id="top-nav">
-        <div className="flex">
-          <div className="dropdown-button flex">
-            <FormControl sx={{ minWidth: 150 }}>
-              <InputLabel id="data-center-select-helper-label">
-                Data Center
-              </InputLabel>
-              <Select
-                labelId="data-center-select-helper-label"
-                value={dataCenter}
-                label="Data Center"
-                onChange={(event: SelectChangeEvent) =>
-                  selectDataCenter(event.target.value)
-                }
-              >
-                {DATA_CENTERS.map((dataCenter) => (
-                  <MenuItem key={dataCenter} value={dataCenter}>
-                    {dataCenter}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          </div>
-          <div className="dropdown-button flex">
-            <FormControl disabled={!dataCenter} sx={{ minWidth: 150 }}>
-              <InputLabel id="home-world-select-helper-label">
-                Home World
-              </InputLabel>
-              <Select
-                labelId="home-world-select-helper-label"
-                value={homeWorld}
-                label="Home World"
-                onChange={(event: SelectChangeEvent) =>
-                  selectHomeWorld(event.target.value)
-                }
-              >
-                {availableWorlds.map((world) => (
-                  <MenuItem key={world} value={world}>
-                    {world}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          </div>
+        <div id="view-toggle" className="centered">
+          <h3>Single Item View</h3>
+          <Switch
+            checked={multiView}
+            onChange={(e) => setMultiView(e.target.checked)}
+          />
+          <h3>List Items View</h3>
+        </div>
+        <div className="dropdown-button flex">
+          <FormControl sx={{ minWidth: 150 }}>
+            <InputLabel id="data-center-select-helper-label">
+              Data Center
+            </InputLabel>
+            <Select
+              labelId="data-center-select-helper-label"
+              value={dataCenter}
+              label="Data Center"
+              onChange={(event: SelectChangeEvent) =>
+                selectDataCenter(event.target.value)
+              }
+            >
+              {DATA_CENTERS.map((dataCenter) => (
+                <MenuItem key={dataCenter} value={dataCenter}>
+                  {dataCenter}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </div>
+        <div className="dropdown-button flex">
+          <FormControl disabled={!dataCenter} sx={{ minWidth: 150 }}>
+            <InputLabel id="home-world-select-helper-label">
+              Home World
+            </InputLabel>
+            <Select
+              labelId="home-world-select-helper-label"
+              value={homeWorld}
+              label="Home World"
+              onChange={(event: SelectChangeEvent) =>
+                selectHomeWorld(event.target.value)
+              }
+            >
+              {availableWorlds.map((world) => (
+                <MenuItem key={world} value={world}>
+                  {world}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
         </div>
       </div>
       <div id="search-container">
